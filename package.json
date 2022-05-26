@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-crypto-api",
+  "version": "1.0.0",
+  "description": "Crypto API with registration, Admin CRUD and subscription",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielAlbino/Nodejs-crypto-api.git"
+  },
+  "author": "Daniel Albino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielAlbino/Nodejs-crypto-api/issues"
+  },
+  "homepage": "https://github.com/DanielAlbino/Nodejs-crypto-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.16",
+    "typescript": "^4.7.2"
+  }
+}
