@@ -1,12 +1,11 @@
 const express = require("express");
 const routes = require("./app/routes/routes");
-const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 const app = express();
 
+app.use(express.json());
 app.use("/", routes);
-
-
 
 app.listen(8080, () => {
   console.log("Server is Running!");

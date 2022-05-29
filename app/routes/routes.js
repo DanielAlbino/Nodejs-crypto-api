@@ -1,19 +1,38 @@
 const express = require("express");
-const routes = express().router();
+const router = express();
 
-routes.post("/user/generateToken", (req, res) => {
-  // Validate User Here
+const {
+  signin,
+  signup,
+  signout,
+} = require("../controllers/auth/authentication.controller");
 
-  // Then generate JWT Token
-  let jwtSecretKey = process.env.JWT_SECRET_KEY;
-  let data = {
-    time: Date(),
-    userId: 99,
-  };
+const {
+  getSpread,
+  updateSpread,
+  addNewSpread,
+  deleteSpread,
+} = require("../controllers/spread/spread.controller");
 
-  const token = jwt.sign(data, jwtSecretKey);
-
-  res.send(token);
+// Base
+router.get("/", (req, res) => {
+  console.log("Welcome!");
 });
 
-module.exports = routes;
+// Authentication
+router.post("/signin", signin);
+router.post("/signup", signup);
+router.post("/signout", signout);
+
+// User - Read, Update, Delete
+router.get("/user/:id", signin);
+router.put("/user/:id/update", signup);
+router.delete("/user/:id", signout);
+
+// Spread CRUD
+router.post("/spread", addNewSpread);
+router.get("/spread", getSpread);
+router.put("/spread", updateSpread);
+router.delete("/spread", deleteSpread);
+
+module.exports = router;
