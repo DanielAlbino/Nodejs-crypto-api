@@ -14,9 +14,19 @@ const {
   deleteSpread,
 } = require("../controllers/spread/spread.controller");
 
+const {
+  getUser,
+  updateUser,
+  deleteUser,
+  createUser,
+} = require("../controllers/admin/administrative.controller");
+
+const {
+  getCurrencyExchangeRate,
+} = require("../controllers/coinmarketAPI/coinmarketcap.controller");
 // Base
 router.get("/", (req, res) => {
-  console.log("Welcome!");
+  res.status(200).send("welcome");
 });
 
 // Authentication
@@ -25,14 +35,17 @@ router.post("/signup", signup);
 router.post("/signout", signout);
 
 // User - Read, Update, Delete
-router.get("/user/:id", signin);
-router.put("/user/:id/update", signup);
-router.delete("/user/:id", signout);
+router.post("/user/new", createUser);
+router.get("/user/:id", getUser);
+router.put("/user/:id/update", updateUser);
+router.delete("/user/:username", deleteUser);
 
 // Spread CRUD
-router.post("/spread", addNewSpread);
 router.get("/spread", getSpread);
 router.put("/spread", updateSpread);
-router.delete("/spread", deleteSpread);
+
+//COINMARKETCAP Routes
+
+router.get("/api/BTCUSD", getCurrencyExchangeRate);
 
 module.exports = router;
