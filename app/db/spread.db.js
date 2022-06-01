@@ -20,8 +20,8 @@ const getSpreadInfo = async () => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
@@ -36,8 +36,8 @@ const updateSpread = async (newSpread) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
