@@ -20,8 +20,8 @@ const getUserInfo = async (userId) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
@@ -39,8 +39,8 @@ const updateUserInfoWithoutPassword = async (user) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
@@ -58,8 +58,8 @@ const updateUserInfoWithPassword = async (user) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
@@ -74,8 +74,8 @@ const deleteUserFromDB = async (username) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 

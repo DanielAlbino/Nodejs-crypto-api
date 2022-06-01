@@ -20,16 +20,16 @@ const verifyUser = async (user) => {
     })
     .catch((e) => {
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
-const checkIfUsernameExists = (req, res) => {
+const checkIfUsernameExists = async (req, res) => {
   const { user } = req.body;
   // promise
   client.connect();
-  client
+  const response = await client
     .query(`SELECT username FROM users WHERE username = $1`, [user])
     .then(() => {
       return true;
@@ -37,8 +37,10 @@ const checkIfUsernameExists = (req, res) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
+
+  return response;
 };
 
 const createNewUser = async (user) => {
@@ -56,7 +58,8 @@ const createNewUser = async (user) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
+    })
+    .then(() => client.end());
 
   return response;
 };
@@ -71,8 +74,8 @@ const sendTockenToBlackList = (token) => {
     .catch((e) => {
       errorLog(e.stack);
       return false;
-    });
-  client.end;
+    })
+    .then(() => client.end());
   return response;
 };
 
